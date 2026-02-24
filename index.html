@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Nuova - Battlerock Pop Art Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Permanent+Marker&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --pop-rojo: #FF0031;
+            --pop-azul: #0051FF;
+            --pop-amarillo: #FFD700;
+            --pop-negro: #000000;
+            --pop-blanco: #FFFFFF;
+        }
+
+        body {
+            background-color: var(--pop-azul);
+            background-image: radial-gradient(var(--pop-negro) 15%, transparent 16%);
+            background-size: 15px 15px;
+            color: var(--pop-negro);
+            font-family: 'Roboto Condensed', sans-serif;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* --- SECCIÓN LEYENDA (MANTENIDO) --- */
+        .seccion-leyenda {
+            background: var(--pop-rojo);
+            border: 6px solid var(--pop-negro);
+            padding: 40px;
+            margin: 20px auto 30px;
+            max-width: 900px;
+            box-shadow: 15px 15px 0px var(--pop-negro);
+            transform: rotate(-1deg);
+            text-align: center;
+            position: relative;
+        }
+
+        .guerrera-unificadora {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 250px;
+            filter: drop-shadow(0 0 5px var(--pop-amarillo));
+            animation: flotarGuerrera 3s infinite alternate ease-in-out;
+        }
+        @keyframes flotarGuerrera { from { transform: translateY(0); } to { transform: translateY(-12px); } }
+
+        .seccion-leyenda h2 {
+            font-family: 'Luckiest Guy', cursive;
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: var(--pop-amarillo);
+            text-shadow: 4px 4px 0px var(--pop-negro);
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        /* --- CARTEL BIENVENIDA (MANTENIDO) --- */
+        .cartel-bienvenida {
+            background: var(--pop-negro);
+            color: var(--pop-blanco);
+            border: 4px solid var(--pop-amarillo);
+            padding: 40px 30px;
+            max-width: 800px;
+            margin: 40px auto 60px;
+            position: relative;
+            box-shadow: 12px 12px 0px var(--pop-rojo);
+            transform: rotate(1deg);
+            text-align: center;
+        }
+        .cartel-bienvenida p {
+            font-family: 'Bangers', cursive;
+            font-size: 2.2em;
+            line-height: 1.1;
+            margin: 0;
+            color: var(--pop-blanco);
+            text-shadow: 3px 3px 0px var(--pop-rojo);
+        }
+
+        /* --- BURBUJA (MANTENIDO) --- */
+        .burbuja-instruccion {
+            background: var(--pop-amarillo);
+            border: 4px solid var(--pop-negro);
+            padding: 12px 20px;
+            font-family: 'Bangers';
+            font-size: 1.6em;
+            box-shadow: 8px 8px 0 var(--pop-rojo);
+            display: inline-block;
+            position: relative;
+            margin: 20px auto 40px;
+            transform: rotate(-2deg);
+            z-index: 5;
+        }
+        .burbuja-instruccion::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 15px 15px 0 15px;
+            border-style: solid;
+            border-color: var(--pop-negro) transparent transparent transparent;
+        }
+
+        /* --- HISTORIAS (MANTENIDO) --- */
+        .seccion-historias { max-width: 1100px; margin: 0 auto 60px; text-align: center; }
+        .grid-historias { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 30px; }
+        .comic-cover { width: 250px; height: 380px; background: var(--pop-blanco); border: 5px solid var(--pop-negro); position: relative; cursor: pointer; transition: 0.3s ease; box-shadow: 10px 10px 0px var(--pop-negro); display: flex; flex-direction: column; overflow: hidden; }
+        .comic-cover:hover { transform: scale(1.05) translateY(-10px); box-shadow: 15px 15px 0px var(--pop-rojo); }
+        .comic-header { background: var(--pop-rojo); color: white; font-family: 'Bangers', cursive; padding: 5px; border-bottom: 4px solid var(--pop-negro); font-size: 1.2em; }
+        .comic-img { flex-grow: 1; display: flex; align-items: center; justify-content: center; font-family: 'Permanent Marker', cursive; font-size: 1.8em; text-align: center; padding: 0; text-transform: uppercase; overflow: hidden; }
+
+        /* --- ORDEN DEL METAL (MANTENIDO) --- */
+        .pergamino-orden { background: var(--pop-blanco); border: 6px solid var(--pop-negro); padding: 40px; max-width: 1000px; margin: 0 auto 60px; box-shadow: 20px 20px 0px var(--pop-amarillo); }
+        .cuadro-resena-orden {
+            background-color: var(--pop-blanco);
+            background-image: radial-gradient(rgba(0,0,0,0.1) 15%, transparent 16%);
+            background-size: 8px 8px;
+            border: 4px solid var(--pop-negro);
+            padding: 40px 30px;
+            margin: 20px auto 40px;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 10px 10px 0px var(--pop-negro);
+        }
+        .etiqueta-narrador {
+            position: absolute; top: -15px; left: 20px; background: var(--pop-amarillo); color: var(--pop-negro); padding: 8px 20px; font-family: 'Bangers'; border: 3px solid var(--pop-negro); transform: rotate(-2deg); z-index: 10;
+        }
+
+        .contenedor-integrantes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+        .carta-personaje {
+            background: var(--pop-blanco); border: 4px solid var(--pop-negro); padding: 15px; text-align: center; box-shadow: 8px 8px 0px var(--pop-rojo); transition: 0.4s; cursor: pointer;
+        }
+        .nombre-personaje { font-family: 'Permanent Marker'; background: var(--pop-negro); color: var(--pop-amarillo); padding: 5px 15px; display: inline-block; transform: skewX(-10deg); margin-top: 10px; }
+
+        /* --- TOUR (MANTENIDO) --- */
+        .grid-presentaciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto 80px; }
+        .card-presentacion { background: var(--pop-blanco); border: 5px solid var(--pop-negro); padding: 10px; cursor: pointer; box-shadow: 10px 10px 0px var(--pop-negro); transition: 0.3s; }
+        .card-presentacion:hover { transform: scale(1.05) rotate(2deg); }
+        .titulo-evento-card { display: block; background: var(--pop-negro); color: var(--pop-amarillo); font-family: 'Bangers'; padding: 5px; margin-top: 10px; text-align: center; transform: skewX(-5deg); }
+        .img-tour { width: 100%; border: 3px solid var(--pop-negro); }
+
+        /* --- MODALES Y VISOR (ACTUALIZADO CON FULLSCREEN) --- */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 81, 255, 0.95); overflow-y: auto; }
+        .modal-contenido { background-color: var(--pop-blanco); margin: 20px auto; padding: 25px; border: 8px solid var(--pop-negro); width: 90%; max-width: 850px; position: relative; box-shadow: 15px 15px 0px var(--pop-amarillo); }
+        .cerrar-modal { position: absolute; right: 15px; top: 5px; font-size: 45px; cursor: pointer; font-family: 'Bangers'; z-index: 100; }
+        
+        #contenedor-visor-fs:fullscreen {
+            background: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #contenedor-visor-fs:fullscreen img { max-height: 90vh; width: auto; }
+
+        .tira-comic-galeria { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px 0; background: #eee; border: 4px solid black; margin-top: 20px; }
+        .panel-comic { border: 5px solid var(--pop-negro); background: white; box-shadow: 8px 8px 0px var(--pop-negro); width: 200px; overflow: hidden; transition: 0.3s; }
+        .panel-comic img, .panel-comic video { width: 100%; height: 200px; object-fit: cover; display: block; }
+
+        .btn-leer { padding: 10px 20px; background: var(--pop-negro); color: var(--pop-amarillo); font-family: 'Bangers'; border: 3px solid var(--pop-rojo); cursor: pointer; margin: 10px; }
+
+        /* Ficha personaje modal */
+        
+	.ficha-comic { display: flex; flex-wrap: wrap; gap: 20px; background: #fff; border: 6px solid #000; padding: 20px; }
+        .cuerpo-ficha { display: flex; gap: 20px; width: 100%; }
+	.columna-izquierda { flex: 1; min-width: 250px; }
+	.columna-derecha { flex: 1.5; text-align: left; font-family: 'Roboto Condensed', sans-serif; }
+	.banner-superior { font-family: 'Luckiest Guy'; font-size: 3rem; text-align: right; width: 100%; }
+	.stat-row { display: flex; justify-content: space-between; border-bottom: 2px solid #000; font-family: 'Bangers'; font-size: 1.2rem; }
+	.mini-stats-row { display: flex; gap: 10px; margin: 15px 0; }
+	.mini-box { border: 3px solid #000; flex: 1; text-align: center; padding: 5px; font-family: 'Bangers'; }
+   	
+	/* Fuentes de Google */
+	@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&display=swap');
+	
+	.sheet-container{
+	background: white;
+        border: 5px solid #000;
+        padding: 20px;
+        max-width: 650px;
+        margin: 20px auto;
+        font-family: 'Bangers', cursive;
+        box-shadow: 12px 12px 0px #000;
+        position: relative;
+	}
+
+	/* Colores por personaje */
+	.sheet-container.paladin { border-color: #ff0031; box-shadow: 12px 12px 0px #ff0031; }
+	.sheet-container.mago { border-color: #00ffff; box-shadow: 12px 12px 0px #00ffff; }
+	.sheet-container.bardo { border-color: #ff8c00; box-shadow: 12px 12px 0px #ff8c00; }
+	.sheet-container.barbaro { border-color: #a020f0; box-shadow: 12px 12px 0px #a020f0; }
+
+	.sheet-header { border-bottom: 4px solid #000; margin-bottom: 15px; position: relative; }
+	.char-name { font-size: 3.5rem; margin: 0; color: #000; -webkit-text-stroke: 1px #000; }
+	.char-subtitle { font-size: 1.2rem; margin: 0; color: #666; letter-spacing: 1px; }
+ 	
+	.badge-critical {
+            position: absolute; top: -10px; right: -10px; background: #ff0031; color: white;
+            padding: 5px 15px; transform: rotate(15deg); border: 3px solid #000; font-weight: bold;
+	}
+
+	.sheet-body { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; }
+
+	.char-portrait { border: 4px solid #000; background: #eee; line-height: 0; }
+	.char-portrait img { width: 100%; height: auto; }
+
+	.stat-row {
+        display: flex; justify-content: space-between; align-items: center;
+        border-bottom: 2px solid #000; padding: 4px 0; font-size: 1.2rem;
+	}
+
+	.stat-row strong { font-size: 1.5rem; color: #333; }
+	.stat-row small { background: #000; color: #fff; padding: 2px 6px; border-radius: 4px; }
+	
+	.info-box { background: #f9f9f9; padding: 10px; border: 2px solid #000; margin-bottom: 15px; }
+	.info-box p { margin: 5px 0; font-size: 1rem; font-family: sans-serif; font-weight: bold; }
+
+	.combat-stats { display: flex; gap: 10px; margin-bottom: 15px; }
+	.mini-box {
+            flex: 1; border: 3px solid #000; text-align: center; padding: 5px; background: #ffff00;
+	}
+
+	.mini-box span { display: block; font-size: 0.8rem; }
+	.mini-box strong { font-size: 1.4rem; }
+
+	.btn-d20 {
+            width: 100%; padding: 10px; background: #000; color: #fff; border: none;
+            font-family: 'Luckiest Guy', cursive; font-size: 1.5rem; cursor: pointer;
+	}
+
+	.btn-d20:hover { background: #ff00ff; }
+
+	.resultado-dado {
+            text-align: center; font-size: 1.5rem; margin-top: 10px; height: 30px; color: #ff0031;
+	}
+
+
+	/* Animación de vibración para el Natural 20 */
+	@keyframes sacudida-critica {
+           0% { transform: translate(1px, 1px) rotate(0deg); }
+           10% { transform: translate(-1px, -2px) rotate(-1deg); }
+           20% { transform: translate(-3px, 0px) rotate(1deg); }
+           30% { transform: translate(3px, 2px) rotate(0deg); }
+           40% { transform: translate(1px, -1px) rotate(1deg); }
+           50% { transform: translate(-1px, 2px) rotate(-1deg); }
+           60% { transform: translate(-3px, 1px) rotate(0deg); }
+           70% { transform: translate(3px, 1px) rotate(-1deg); }
+           80% { transform: translate(-1px, -1px) rotate(1deg); }
+           90% { transform: translate(1px, 2px) rotate(0deg); }
+           100% { transform: translate(1px, -2px) rotate(-1deg); }
+	}
+
+	/* Resplandor de energía dorada */
+	.efecto-critico {
+            animation: sacudida-critica 0.3s linear infinite, resplandor-aura 0.5s ease-in-out infinite alternate !important;
+            border-color: #FFD700 !important;
+            box-shadow: 0 0 50px #FFD700, inset 0 0 20px #FFD700 !important;
+            z-index: 100;
+	}
+
+       @keyframes resplandor-aura {
+           from { filter: drop-shadow(0 0 10px gold) brightness(1); }
+           to { filter: drop-shadow(0 0 30px yellow) brightness(1.3); }
+	}
+
+</style>
+</head>
+<body>
+
+    <audio id="musica-comic" loop><source src="audio/Making Love.mp3" type="audio/mpeg"></audio>
+    <audio id="sonido-pagina"><source src="audio/page-flip.mp3" type="audio/mpeg"></audio>
+
+    <section class="seccion-leyenda">
+        <h2>¡LA GUERRERA DESPIERTA!</h2>
+    </section>
+
+    <div class="cartel-bienvenida">
+        <p>Bienvenido a la página oficial de <br>LA NUOVA BATTLEROCK BAND</p>
+    </div>
+
+    <section class="seccion-historias">
+        <h2 style="font-family: 'Luckiest Guy'; color: white; font-size: 3em; text-shadow: 4px 4px 0 var(--pop-rojo);">COMIC RELEASES</h2>
+        <div class="grid-historias">
+            <div class="comic-cover" onclick="abrirModalComic('STILL LOVING ROCK', 'Wild Heart busca a su amada la guerrera La Nuova.')">
+                <div class="comic-header">BATTLEROCK ANTHOLOGY</div>
+                <div class="comic-img">
+                    <img src="img/Comic.png" alt="Still Loving Rock" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="background: rgba(0,0,0,0.8); color: var(--pop-amarillo); font-family: 'Bangers'; padding: 5px; position: absolute; bottom: 0; width: 100%;">STILL LOVING ROCK</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="pergamino-orden">
+        <h2 style="font-family: 'Bangers'; text-align: center; font-size: 3.5em;">LA ORDEN DEL HARD ROCK</h2>
+        
+        <div class="cuadro-resena-orden">
+            <div class="etiqueta-narrador">CRÓNICAS DE LA NUOVA</div>
+            <p style="font-size: 1.2em; line-height: 1.6;">
+                La Nuova es una banda de Hard Rock oriunda de Venezuela Edo. Mérida, que nace en el año 2023, como la necesidad, de un grupo de eternos enamorados de este género musical, de interpretar 
+                los clásicos del rock que dejaron en ellos la huella indeleble de la rebeldía melódica. Todo esto con el objetivo de fomentar el rescate del legado dejado por esta revolución musical, que marco 
+                una era de lucha y libertad. 
+                <strong>La Nuova</strong> no es solo una banda; es la legión unificada por cuatro guerreros del metal, forjados en el fuego del <em>Battlerock</em>. ¡Bienvenidos a la orden!
+            </p>
+        </div>
+
+        <div class="contenedor-integrantes">
+            <div class="carta-personaje" onclick="abrirModalPersonaje({nombre: 'RONA', rol: 'VOCALISTA', color: '#FF0031', icono: 'fa-microphone-lines', imagen: 'img/Rona.png', cancion: 'audio/cancion_rona.mp3', poder: 'Grito de Trueno (150dB)', equipo: 'Micrófono de Oro de la Guerrera', descripcion: 'La voz que despierta a la guerrera. Su energía es el motor puro de La Nuova.'})">
+                <div style="height: 200px; overflow:hidden; border:2px solid black;"><img src="img/Rona.png" style="width:100%;"></div>
+                <h3 class="nombre-personaje">RONA</h3>
+      
+            </div>
+            <div class="carta-personaje" onclick="abrirModalPersonaje({nombre: 'GRILLO', rol: 'GUITARRA', color: '#0051FF', icono: 'fa-bolt', imagen: 'img/Grillo.png', cancion: 'audio/solo_grillo.mp3', poder: 'Velocidad de Luz (32X)', equipo: 'Les Paul de Fuego', descripcion: 'Maestro de las seis cuerdas, capaz de invocar tormentas con un solo acorde.'})">
+                <div style="height: 200px; overflow:hidden; border:2px solid black;"><img src="img/Grillo.png" style="width:100%;"></div>
+                <h3 class="nombre-personaje">GRILLO</h3>
+            </div>
+            <div class="carta-personaje" onclick="abrirModalPersonaje({nombre: 'MANU', rol: 'GUITARRA RÍTMICA', color: '#FF8C00', icono: 'fa-fire-flame-curved', imagen: 'img/Manu.png', cancion: 'audio/riff_manu.mp3', poder: 'Muro de Sonido Sísmico', equipo: 'Gibson Explorer del Abismo', descripcion: 'El guardián del ritmo. Sus acordes son los cimientos sobre los que se construye cada batalla.'})">
+                <div style="height: 200px; overflow:hidden; border:2px solid black;"><img src="img/Manu.png" style="width:100%;"></div>
+                <h3 class="nombre-personaje">MANU</h3>
+            </div>
+            <div class="carta-personaje" onclick="abrirModalPersonaje({nombre: 'WILL KILL', rol: 'BATERÍA', color: '#800080', icono: 'fa-drum', imagen: 'img/Will.png', cancion: 'audio/solo_will.mp3', poder: 'Doble Bombo Atómico', equipo: 'Baquetas de Hueso de Dragón', descripcion: 'No solo marca el tiempo, marca el destino. Cada golpe resuena en el pecho del rock.'})">
+                <div style="height: 200px; overflow:hidden; border:2px solid black;"><img src="img/Will.png" style="width:100%;"></div>
+                <h3 class="nombre-personaje">WILL KILL</h3>
+            </div>
+        </div>
+    </main>
+
+    <div style="text-align: center;">
+        <h2 style="font-family: 'Luckiest Guy'; color: white; font-size: 3em; text-shadow: 4px 4px 0 var(--pop-rojo); margin-bottom: 0;">TOUR DE BATALLA</h2>
+        <div class="burbuja-instruccion">
+            <i class="fa-solid fa-hand-pointer"></i> ¡HAZ CLIC EN LAS TARJETAS PARA VER LAS RESEÑAS, FOTOS Y VIDEOS!
+        </div>
+    </div>
+    
+    <div class="grid-presentaciones">
+        <div class="card-presentacion" onclick="abrirDetalleEvento({titulo: 'ROCK AND DRUMS', flyer: 'img/RockandDrumsFlyer.jpeg', descripcion: 'El estruendo de los tambores sacudió la tierra.', fotos: ['img/ROCKANDDRUMS.jpeg'], videos:[]})">
+            <img src="img/RockAndDrums.png" class="img-tour"> <span class="titulo-evento-card">ROCK AND DRUMS</span>
+        </div>
+        <div class="card-presentacion" onclick="abrirDetalleEvento({titulo: 'Night of the Damned', flyer: 'img/NightOfTheDamnedFlyer.jpeg', descripcion: 'Posesión y Rock.', fotos: ['img/NOD1.jpg','img/NOD2.jpg','img/NOD3.jpg','img/NOD4.jpg','img/NOD5.jpg','img/NOD6.jpg', 'img/NOD7.jpg', 'img/NOD8.jpg', 'img/NOD9.jpg', 'img/NOD10.jpg', 'img/NOD11.jpg', 'img/NOD12.jpg', 'img/NOD13.jpg', 'img/NOD14.jpg','img/NOD15.jpg', 'img/NOD16.jpg', 'img/NOD17.jpg','img/NOD18.jpg', 'img/NOD19.jpg', 'img/NOD20.jpg', 'img/NOD21.jpg'], videos: ['video/NODV1.mp4', 'video/NODV2.mp4','video/NODV3.mp4', 'video/NODV4.mp4', 'video/NODV5.mp4', 'video/NODV6.mp4', 'video/NODV7.mp4', 'video/NODV8.mp4','video/NODV9.mp4', 'video/NODV10.mp4','video/NODV11.mp4','video/NODV12.mp4', 'video/NODV13.mp4']})">
+            <img src="img/Night.png" class="img-tour"> <span class="titulo-evento-card">NIGHT OF THE DAMNED</span>
+        </div>
+        <div class="card-presentacion" onclick="abrirDetalleEvento({titulo: 'METAL WARRIORS', flyer: 'img/warriors.jpeg', descripcion: 'Acero y Rock en una sola noche.', fotos: ['img/Metal1.jpg','img/Metal2.jpg','img/Metal3.jpg','img/Metal4.jpg','img/Metal5.jpg','img/Metal6.jpg', 'img/Metal7.jpg', 'img/Metal8.jpg', 'img/Metal9.jpg', 'img/Metal10.jpg', 'img/Metal11.jpg', 'img/Metal12.jpg', 'img/Metal13.jpg', 'img/Metal14.jpg','img/Metal15.jpg', 'img/Metal16.jpg', 'img/Metal17.jpg','img/Metal18.jpg', 'img/Metal19.jpg', 'img/Metal20.jpg', 'img/Metal21.jpg'], videos: ['video/MetalV1.mp4', 'video/MetalV2.mp4','video/MetalV3.mp4', 'video/MetalV4.mp4', 'video/MetalV5.mp4', 'video/MetalV6.mp4', 'video/MetalV7.mp4', 'video/MetalV8.mp4','video/MetalV9.mp4', 'video/MetalV10.mp4','video/MetalV11.mp4','video/MetalV12.mp4']})">
+            <img src="img/MetalWarriors.png" class="img-tour"> <span class="titulo-evento-card">METAL WARRIORS</span>
+        </div>
+        <div class="card-presentacion" onclick="abrirDetalleEvento({titulo: 'Power Ballads', flyer: 'img/Power Ballads.png', descripcion: 'Sentimiento y fuerza en cada acorde.', fotos: ['img/Power1.jpg', 'img/Power2.jpg', 'img/Power3.jpg','img/Power4.jpg','img/Power5.jpg', 'img/Power6.jpg', 'img/Power7.jpg','img/Power8.jpg'], videos: ['video/PowerV1.mp4','video/PowerV2.mp4', 'video/PowerV3.mp4', 'video/PowerV4.mp4', 'video/PowerV5.mp4' ]})">
+            <img src="img/PowerBallads.png" class="img-tour"> <span class="titulo-evento-card">POWER BALLADS</span>
+        </div>
+        <div class="card-presentacion" onclick="abrirDetalleEvento({titulo: 'Legends of Love', flyer: 'img/Legends Of Love.jpg', descripcion: 'Historias de pasión contadas en rock.', fotos: ['img/Legends1.jpg', 'img/Legends2.jpg', 'img/Legends3.jpg', 'img/Legends4.jpg', 'img/Legends5.jpg', 'img/Legends6.jpg', 'img/Legends7.jpg', 'img/Legends8.jpg', 'img/Legends9.jpg', 'img/Legends10.jpg', 'img/Legends11.jpg', 'img/Legends12.jpg', 'img/Legends13.jpg', 'img/Legends14.jpg', 'img/Legends15.jpg', 'img/Legends16.jpg', 'img/Legends17.jpg'], videos: ['video/LegendsV1.mp4', 'video/LegendsV2.mp4', 'video/LegendsV3.mp4', 'video/LegendsV4.mp4', 'video/LegendsV5.mp4', 'video/LegendsV6.mp4', 'video/LegendsV7.mp4', 'video/LegendsV8.mp4', 'video/LegendsV9.mp4', 'video/LegendsV10.mp4', 'video/LegendsV11.mp4', 'video/LegendsV12.mp4', 'video/LegendsV13.mp4', 'video/LegendsV14.mp4']})">
+            <img src="img/LegendsofLove.png" class="img-tour"> <span class="titulo-evento-card">LEGENDS OF LOVE</span>
+        </div>
+        <div class="card-presentacion" onclick="abrirDetalleEvento({titulo: 'La Tauro', flyer: 'img/LaTauroFlyer.jpeg', descripcion: '¡El Rugir del BattleRock en el Vigía!', fotos: ['img/Tauro1.jpg', 'img/Tauro2.jpg', 'img/Tauro3.jpg', 'img/Tauro4.jpg', 'img/Tauro5.jpg', 'img/Tauro6.jpg', 'img/Tauro7.jpg', 'img/Tauro8.jpg', 'img/Tauro9.jpg', 'img/Tauro10.jpg', 'img/Tauro11.jpg'], videos: ['video/TauroV1.mp4', 'video/TauroV2.mp4', 'video/TauroV3.mp4', 'video/TauroV4.mp4', 'video/TauroV5.mp4', 'video/TauroV6.mp4', 'video/TauroV7.mp4', 'video/TauroV8.mp4', 'video/TauroV9.mp4', 'video/TauroV10.mp4', 'video/TauroV11.mp4', 'video/TauroV12.mp4','video/TauroV13.mp4']})">
+            <img src="img/LaTauro.png" class="img-tour"> <span class="titulo-evento-card">La Tauro</span>
+        </div>
+        <div class="card-presentacion" onclick="abrirDetalleEvento({titulo: 'Hard Rock Revival 2', flyer: 'img/HardRockRevivalBirosca.png', descripcion: '¡Más fuerte que nunca!', fotos: ['img/HardB1.jpg', 'img/HardB2.jpg', 'img/HardB3.jpg', 'img/HardB4.jpg', 'img/HardB5.jpg', 'img/HardB6.jpg', 'img/HardB7.jpg', 'img/HardB8.jpg', 'img/HardB9.jpg', 'img/HardB10.jpg', 'img/HardB11.jpg', 'img/HardB12.jpg', 'img/HardB13.jpg', 'img/HardB14.jpg', 'img/HardB15.jpg', 'img/HardB16.jpg', 'img/HardB17.jpg', 'img/HardB18.jpg', 'img/HardB19.jpg', 'img/HardB20.jpg', 'img/HardB21.jpg'], videos: ['video/HardBV1.mp4', 'video/HardBV2.mp4', 'video/HardBV3.mp4', 'video/HardBV4.mp4', 'video/HardBV5.mp4', 'video/HardBV6.mp4', 'video/HardBV7.mp4', 'video/HardBV8.mp4', 'video/HardBV9.mp4', 'video/HardBV10.mp4', 'video/HardBV11.mp4', 'video/HardBV12.mp4', 'video/HardBV13.mp4']})">
+            <img src="img/HardRockRevival2.png" class="img-tour"> <span class="titulo-evento-card">HARD ROCK REVIVAL 2</span>
+        </div>
+        <div class="card-presentacion" onclick="abrirDetalleEvento({titulo: 'Hard Rock Revival 1', flyer: 'img/HardRockRevival.png', descripcion: 'Donde todo volvió a nacer.', fotos: [], videos: ['video/HardV1.mp4','video/HardV2.mp4','video/HardV3.mp4','video/HardV4.mp4', 'video/HardV5.mp4', 'video/HardV6.mp4', 'video/HardV7.mp4', 'video/HardV8.mp4', 'video/HardV9.mp4', 'video/HardV10.mp4', 'video/HardV11.mp4', 'video/HardV12.mp4', 'video/HardV13.mp4', 'video/HardV14.mp4', 'video/HardV15.mp4' ]})">
+            <img src="img/HardRockRevival1.png" class="img-tour"> <span class="titulo-evento-card">HARD ROCK REVIVAL 1</span>
+        </div>
+        <div class="card-presentacion" onclick="abrirDetalleEvento({titulo: 'Enter La Nuova', flyer: 'img/enter La Nuova.png', descripcion: 'Presentación oficial del Battlerock.', fotos: ['img/Enter1.jpg', 'img/Enter2.jpg', 'img/Enter3.jpg', 'img/Enter4.jpg', 'img/Enter5.jpg', 'img/Enter6.jpg', 'img/Enter7.jpg', 'img/Enter8.jpg', 'img/Enter9.jpg', 'img/Enter10.jpg', 'img/Enter11.jpg', 'img/Enter12.jpg', 'img/Enter13.jpg', 'img/Enter14.jpg', 'img/Enter15.jpg', 'img/Enter16.jpg', 'img/Enter17.jpg', 'img/Enter18.jpg'], videos: ['video/EnterV1.mp4', 'video/EnterV2.mp4', 'video/EnterV3.mp4', 'video/EnterV4.mp4']})">
+            <img src="img/EnterLaNuova.png" class="img-tour"> <span class="titulo-evento-card">ENTER LA NUOVA</span>
+        </div>
+    </div>
+
+    <div id="modal-personaje" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal" onclick="cerrarModalPersonaje()">&times;</span>
+            <div id="contenedor-ficha-dinamica"></div>
+        </div>
+   </div>
+
+	<div id="modal-comic" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+            <div id="modal-info-texto">
+                <h3 id="modal-titulo" style="font-family:'Luckiest Guy'; color:var(--pop-rojo); font-size: 2.5em;"></h3>
+                <p id="modal-descripcion" style="font-family:'Bangers'; font-size:1.5em;"></p>
+                <div id="contenedor-galeria-dinamica"></div>
+                <button id="btn-leer-historia" class="btn-leer">¡LEER AHORA!</button>
+            </div>
+            
+    
+            <div id="visor-comic" style="display:none; text-align: center;">
+                <button onclick="toggleFS()" class="btn-leer" style="background:var(--pop-azul)"><i class="fa-solid fa-expand"></i> PANTALLA COMPLETA</button>
+                <div id="contenedor-visor-fs">
+                    <div class="frame-pagina"><img id="pagina-actual" src=""></div>
+                    <div style="text-align: center; margin-top:10px;">
+                        <button onclick="cambiarPagina(-1)" class="btn-leer">⬅</button>
+                        <span id="num-pagina" style="font-family:'Bangers'; font-size: 1.8em;"></span>
+                        <button onclick="cambiarPagina(1)" class="btn-leer">➡</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("modal-comic");
+        const visor = document.getElementById("visor-comic");
+        const infoTexto = document.getElementById("modal-info-texto");
+        const galeriaDinamica = document.getElementById("contenedor-galeria-dinamica");
+        const musica = document.getElementById("musica-comic");
+        const sonidoPagina = document.getElementById("sonido-pagina");
+        
+        let paginas = ["img/Comic 1.png", "img/Comic 2.png", "img/Comic 3.png", "img/Comic 4.png", "img/Comic 5.png", "img/Comic 6.png", "img/Comic 7.png", "img/Comic 8.png", "img/Comic 9.png", "img/Comic 10.png", "img/Comic 11.png", "img/Comic 12.png", "img/Comic 13.png", "img/Comic 14.png", "img/Comic 15.png", "img/Comic 16.png", "img/Comic 17.png",
+        "img/Comic 18.png", "img/Comic 19.png", "img/Comic 20.png", "img/Comic 21.png", "img/Comic 22.png", "img/Comic 23.png", "img/Comic 24.png", "img/Comic 25.png", "img/Comic 26.png"];
+        let paginaActual = 0;
+
+	// Base de datos expandida: Frase, Banda, Logo y Audio Secreto
+           const infoMusicos = {
+               'RONA': { 
+                banda: 'Megadeth', 
+                logo: 'Megadeth.jfif', 
+                secreto: 'audio/Megadeth - Wake Up Dead.mp3',
+                frase: '¡Como un furioso despertar, mi voz hará temblar el abismo!',
+        	pifia:'Mi voz se ha quebrado... el silencio es lo único que puedo liderar hoy.'
+
+	},
+        'GRILLO': { 
+            banda: 'Yngwie Malmstenn ', 
+            logo: 'Yngwie Malmsteen.jfif', 
+            secreto: 'audio/Yngwie Malmsteen - Black Star.mp3',
+            frase: '¡Mis acordes invocan el hechizo de una fuerza naciente!',
+	    pifia:'Se me ha roto una cuerda en el alma... ahora solo ha quedado una estrella negra'
+        },
+        'MANU': { 
+            banda: 'Rata Blanca', 
+            logo: 'Rata Blanca.jfif', 
+            secreto: 'audio/Rata Blanca - Mujer Amante.mp3',
+            frase: '¡La melodia dedicada a la eterna amada!',
+	    pifia:'He olvidado el verso... Solo queda una poesía inconclusa'
+        },
+        'WILL KILL': { 
+            banda: 'Manowar', 
+            logo: 'Manowar.jfif', 
+            secreto: 'audio/Manowar - Metal Warriors.mp3',
+            frase: '¡Este doble bombo es el latido  del mismo infierno!',
+	    pifia:'Baquetas rotas... solo escucho el eco de mi propio cansancio.'
+        }
+     };
+
+
+     function cerrarModal() {
+         modal.style.display = "none";
+         musica.pause();
+         musica.currentTime = 0;
+         musica.src = "audio/Making Love.mp3"; 
+         if(document.fullscreenElement) document.exitFullscreen();
+    }
+
+    function abrirModalComic(titulo, desc) {
+        visor.style.display = "none";
+        infoTexto.style.display = "block";
+        document.getElementById("modal-titulo").innerText = titulo;
+        document.getElementById("modal-descripcion").innerText = desc;
+        galeriaDinamica.innerHTML = "";
+        document.getElementById("btn-leer-historia").style.display = "inline-block";
+        document.getElementById("btn-leer-historia").onclick = () => {
+            infoTexto.style.display = "none";
+            visor.style.display = "block";
+            paginaActual = 0;
+            actualizarPagina();
+            musica.play(); // El rock suena al leer
+         };
+         modal.style.display = "block";
+      }
+
+      function abrirModalPersonaje(datos) {
+    	  visor.style.display = "none";
+          infoTexto.style.display = "block";
+          document.getElementById("btn-leer-historia").style.display = "none"; // Ocultar botón de leer cómic
+
+    	  const fichas = {
+             'RONA': `
+            <div class="sheet-container paladin">
+                <div class="sheet-header">
+                    <div class="badge-critical">CRITICAL!</div>
+                    <h2 class="char-name">RONA</h2>
+                    <p class="char-subtitle">NIVEL 20 - VOCALISTA PALADÍN</p>
+                </div>
+                <div class="sheet-body">
+                    <div class="col-stats">
+                        <div class="char-portrait"><img src="img/Rona.png" alt="Rona"></div>
+                        <div class="stats-list">
+                            <div class="stat-row"><span>STR</span> <strong>18</strong> <small>+4</small></div>
+                            <div class="stat-row"><span>DEX</span> <strong>12</strong> <small>+1</small></div>
+                            <div class="stat-row"><span>CON</span> <strong>16</strong> <small>+3</small></div>
+                            <div class="stat-row"><span>INT</span> <strong>10</strong> <small>+0</small></div>
+                            <div class="stat-row"><span>WIS</span> <strong>14</strong> <small>+2</small></div>
+                            <div class="stat-row"><span>CHA</span> <strong>18</strong> <small>+4</small></div>
+                        </div>
+                    </div>
+                    <div class="col-info">
+                        <div class="info-box">
+                            <p>TRASFONDO: LÍDER LEGIONARIA</p>
+                            <p>ATAQUE: GRITO DE TRUENO</p>
+                            <p>EQUIPO: ARMADURA DE BATTLEROCK</p>
+                        </div>
+                        <div class="combat-stats">
+                            <div class="mini-box"><span>INICIATIVA</span><strong>+1</strong></div>
+                            <div class="mini-box"><span>AC</span><strong>13</strong></div>
+                            <div class="mini-box"><span>HP</span><strong>150</strong></div>
+                        </div>
+                        <button class="btn-d20" onclick="lanzarDado(this)">LANZAR D20</button>
+                        <div class="resultado-dado"></div>
+                    </div>
+                </div>
+            </div>`,
+        'GRILLO': `
+            <div class="sheet-container mago">
+                <div class="sheet-header">
+                    <div class="badge-critical" style="background:#00ffff; color:#000">SPELL!</div>
+                    <h2 class="char-name">GRILLO</h2>
+                    <p class="char-subtitle">NIVEL 20 - MAGO DE LA 6TA CUERDA</p>
+                </div>
+                <div class="sheet-body">
+                    <div class="col-stats">
+                        <div class="char-portrait"><img src="img/Grillo.png" alt="Grillo"></div>
+                        <div class="stats-list">
+                            <div class="stat-row"><span>STR</span> <strong>15</strong> <small>-1</small></div>
+                            <div class="stat-row"><span>DEX</span> <strong>16</strong> <small>+3</small></div>
+                            <div class="stat-row"><span>CON</span> <strong>15</strong> <small>+1</small></div>
+                            <div class="stat-row"><span>INT</span> <strong>20</strong> <small>+5</small></div>
+                            <div class="stat-row"><span>WIS</span> <strong>20</strong> <small>+2</small></div>
+                            <div class="stat-row"><span>CHA</span> <strong>16</strong> <small>+3</small></div>
+                        </div>
+                    </div>
+                    <div class="col-info">
+                        <div class="info-box">
+                            <p>TRASFONDO: SABIO ARCANO</p>
+                            <p>ATAQUE: SOLO ELÉCTRICO</p>
+                            <p>EQUIPO: CETRO STRATOCASTER</p>
+                        </div>
+                        <div class="combat-stats">
+                            <div class="mini-box"><span>INICIATIVA</span><strong>+3</strong></div>
+                            <div class="mini-box"><span>AC</span><strong>13</strong></div>
+                            <div class="mini-box"><span>HP</span><strong>95</strong></div>
+                        </div>
+                        <button class="btn-d20" onclick="lanzarDado(this)">LANZAR D20</button>
+                        <div class="resultado-dado"></div>
+                    </div>
+                </div>
+            </div>`,
+        'MANU': `
+            <div class="sheet-container bardo">
+                <div class="sheet-header">
+                    <div class="badge-critical" style="background:#ff8c00">SONG!</div>
+                    <h2 class="char-name">MANU</h2>
+                    <p class="char-subtitle">NIVEL 20 - BARDO DE LA ANTOLOGÍA</p>
+                </div>
+                <div class="sheet-body">
+                    <div class="col-stats">
+                        <div class="char-portrait"><img src="img/Manu.png" alt="Manu"></div>
+                        <div class="stats-list">
+                            <div class="stat-row"><span>STR</span> <strong>12</strong> <small>+1</small></div>
+                            <div class="stat-row"><span>DEX</span> <strong>14</strong> <small>+2</small></div>
+                            <div class="stat-row"><span>CON</span> <strong>14</strong> <small>+2</small></div>
+                            <div class="stat-row"><span>INT</span> <strong>14</strong> <small>+2</small></div>
+                            <div class="stat-row"><span>WIS</span> <strong>16</strong> <small>+3</small></div>
+                            <div class="stat-row"><span>CHA</span> <strong>19</strong> <small>+4</small></div>
+                        </div>
+                    </div>
+                    <div class="col-info">
+                        <div class="info-box">
+                            <p>TRASFONDO: TROVADOR</p>
+                            <p>ATAQUE: ACORDE DE PODER</p>
+                            <p>EQUIPO: GIBSON EXPLORER DEL ABISMO </p>
+                        </div>
+                        <div class="combat-stats">
+                            <div class="mini-box"><span>INICIATIVA</span><strong>+2</strong></div>
+                            <div class="mini-box"><span>AC</span><strong>12</strong></div>
+                            <div class="mini-box"><span>HP</span><strong>120</strong></div>
+                        </div>
+                        <button class="btn-d20" onclick="lanzarDado(this)">LANZAR D20</button>
+                        <div class="resultado-dado"></div>
+                    </div>
+                </div>
+            </div>`,
+        'WILL KILL': `
+            <div class="sheet-container barbaro">
+                <div class="sheet-header">
+                    <div class="badge-critical" style="background:#a020f0">RAGE!</div>
+                    <h2 class="char-name">WILL KILL</h2>
+                    <p class="char-subtitle">NIVEL 20 - BÁRBARO ORCO</p>
+                </div>
+                <div class="sheet-body">
+                    <div class="col-stats">
+                        <div class="char-portrait"><img src="img/Will.png" alt="Will Kill"></div>
+                        <div class="stats-list">
+                            <div class="stat-row"><span>STR</span> <strong>20</strong> <small>+5</small></div>
+                            <div class="stat-row"><span>DEX</span> <strong>14</strong> <small>+2</small></div>
+                            <div class="stat-row"><span>CON</span> <strong>20</strong> <small>+5</small></div>
+                            <div class="stat-row"><span>INT</span> <strong>12</strong> <small>-1</small></div>
+                            <div class="stat-row"><span>WIS</span> <strong>17</strong> <small>+0</small></div>
+                            <div class="stat-row"><span>CHA</span> <strong>12</strong> <small>+1</small></div>
+                        </div>
+                    </div>
+                    <div class="col-info">
+                        <div class="info-box">
+                            <p>TRASFONDO: BERSERKER</p>
+                            <p>ATAQUE: DOBLE BOMBO</p>
+                            <p>EQUIPO: BAQUETAS DE DRAGÓN</p>
+                        </div>
+                        <div class="combat-stats">
+                            <div class="mini-box"><span>INICIATIVA</span><strong>+2</strong></div>
+                            <div class="mini-box"><span>AC</span><strong>15</strong></div>
+                            <div class="mini-box"><span>HP</span><strong>210</strong></div>
+                        </div>
+                        <button class="btn-d20" onclick="lanzarDado(this)">LANZAR D20</button>
+                        <div class="resultado-dado"></div>
+                    </div>
+                </div>
+            </div>`
+    };
+
+    document.getElementById("modal-titulo").innerText = ""; // Limpiamos título de eventos
+    document.getElementById("modal-descripcion").innerText = "";
+    galeriaDinamica.innerHTML = fichas[datos.nombre] || "Ficha no encontrada";
+
+    if (datos.cancion && musica) {
+        musica.src = datos.cancion;
+        musica.play().catch(e => console.log("Audio bloqueado por el navegador"));
+    }
+    modal.style.display = "block";
+  }
+
+  function lanzarDado(btn) {
+      const resultadoDiv = btn.nextElementSibling;
+      const fichaPadre = btn.closest('.sheet-container');
+      const musica = document.getElementById("musica-comic"); // Usamos el reproductor existente
+      btn.disabled = true; 
+	
+      fichaPadre.classList.remove('efecto-critico');
+	    
+      let giros = 0;
+    const intervalo = setInterval(() => {
+        resultadoDiv.innerText = Math.floor(Math.random() * 20) + 1;
+        giros++;
+        
+        if (giros > 15) {
+            clearInterval(intervalo);
+            const final = Math.floor(Math.random() * 20) + 1;
+            const nombreChar = fichaPadre.querySelector('.char-name').innerText.trim().toUpperCase();
+            const datos = infoMusicos[nombreChar];
+
+            // Lógica de resultados mejorada
+            if (final === 1) {
+                // ESCENARIO: PIFIA (1) - Ahora usa el texto personalizado de la base de datos
+                resultadoDiv.innerHTML = `
+                    <span style="color:red; font-size:1.2em; font-weight:bold;">PIFIA (1)</span><br>
+                    <p style="font-size:0.8em; font-style:italic; margin-top:5px; color:#555;">
+                        "${datos.pifia}"
+                    </p>
+                `;
+            } 
+            else if (final === 20) {
+                // ESCENARIO: CRÍTICO (20) - Activa audio secreto y visuales
+                fichaPadre.classList.add('efecto-critico'); // Añade la clase para la animación visual
+                
+                resultadoDiv.innerHTML = `
+                    <span style="color:#FFD700; font-size:1.5em; text-shadow: 2px 2px black;">¡NATURAL 20!</span><br>
+                    <div class="revelacion-maestra" style="background:gold; border:3px solid black; padding:10px; margin-top:10px; animation: flash 0.5s infinite alternate; color: black;">
+                        <img src="img/${datos.logo}" style="width:30px; vertical-align:middle; margin-right:5px; border:1px solid black;">
+                        <strong>${datos.banda}</strong><br>
+                        <small style="display:block; margin-top:5px; line-height:1.2;">${datos.frase}</small>
+                    </div>
+                `;
+
+                // REPRODUCCIÓN DEL AUDIO SECRETO
+                if(musica) {
+                    musica.pause(); // Pausa la música actual
+                    musica.src = datos.secreto; // Carga el audio secreto (Megadeth, Rata Blanca, etc.)
+                    musica.play().catch(e => console.log("Error: El navegador bloqueó el audio. Haz clic en la página primero."));
+                }
+
+                // Quitamos el efecto visual después de un tiempo para no saturar
+                setTimeout(() => {
+                    fichaPadre.classList.remove('efecto-critico');
+                }, 4000);
+            } 
+            else {
+                // ESCENARIO: ÉXITO NORMAL
+                resultadoDiv.innerHTML = `
+                    <div style="font-weight:bold; font-size:1.1em;">RESULTADO: ${final}</div>
+                    <div style="margin-top:5px; font-size:0.9em;">
+                        Sigue intentando hasta sacar el <strong>número 20</strong> y conoce mi ataque secreto...
+                    </div>
+                `;
+            }
+            btn.disabled = false; // Reactiva el botón para volver a intentar
+        }
+    }, 50);
+}
+
+        function abrirDetalleEvento(d) {
+            infoTexto.style.display = "block";
+            visor.style.display = "none";
+            document.getElementById("btn-leer-historia").style.display = "none";
+            document.getElementById("modal-titulo").innerHTML = `<span style="background:var(--pop-negro); color:var(--pop-amarillo); padding: 5px 15px; transform: skewX(-10deg); display:inline-block;">${d.titulo}</span>`;
+            document.getElementById("modal-descripcion").innerText = d.descripcion;
+            let htmlGaleria = `<div style="text-align:center; margin: 20px 0;"><img src="${d.flyer}" style="width:100%; max-width:450px; border: 6px solid black;"></div><div class="tira-comic-galeria">`;
+            d.fotos.forEach(f => { htmlGaleria += `<div class="panel-comic"><img src="${f}" onclick="window.open('${f}', '_blank')"></div>`; });
+            d.videos.forEach(v => { htmlGaleria += `<div class="panel-comic"><video src="${v}" controls></video></div>`; });
+            htmlGaleria += '</div>';
+            galeriaDinamica.innerHTML = htmlGaleria;
+            modal.style.display = "block";
+        }
+
+        function cambiarPagina(dir) {
+            paginaActual += dir;
+            if (paginaActual < 0) paginaActual = 0;
+            if (paginaActual >= paginas.length) paginaActual = paginas.length - 1;
+            sonidoPagina.currentTime = 0;
+            sonidoPagina.play();
+            actualizarPagina();
+        }
+
+        function actualizarPagina() {
+            document.getElementById("pagina-actual").src = paginas[paginaActual];
+            document.getElementById("num-pagina").innerText = `${paginaActual + 1} / ${paginas.length}`;
+        }
+
+        function toggleFS() {
+            const el = document.getElementById("contenedor-visor-fs");
+            if (!document.fullscreenElement) el.requestFullscreen(); else document.exitFullscreen();
+        }
+
+     
+    </script>
+</body>
+</html>
